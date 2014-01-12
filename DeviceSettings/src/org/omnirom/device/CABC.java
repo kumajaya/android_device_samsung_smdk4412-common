@@ -23,15 +23,15 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
+import android.os.SystemProperties;
 
 public class CABC extends CheckBoxPreference implements OnPreferenceChangeListener {
 
-    private static String FILE = null;
+    private static String FILE = SystemProperties.get("ro.cm.hardware.cabc", "/sys/class/lcd/panel/power_reduce");
 
     public CABC(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.setOnPreferenceChangeListener(this);
-        FILE = context.getResources().getString(R.string.mdnie_cabc_sysfs_file);
     }
 
     public static boolean isSupported(String filePath) {
@@ -43,7 +43,6 @@ public class CABC extends CheckBoxPreference implements OnPreferenceChangeListen
      * @param context       The context to read the SharedPreferences from
      */
     public static void restore(Context context) {
-        FILE = context.getResources().getString(R.string.mdnie_cabc_sysfs_file);
         if (!isSupported(FILE)) {
             return;
         }
