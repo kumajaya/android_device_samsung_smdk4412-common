@@ -32,13 +32,13 @@ PRODUCT_COPY_FILES := \
     $(COMMON_PATH)/rootdir/lpm.rc:root/lpm.rc \
     $(COMMON_PATH)/rootdir/init.trace.rc:root/init.trace.rc \
     $(COMMON_PATH)/rootdir/ueventd.smdk4x12.rc:root/ueventd.smdk4x12.rc \
-    $(COMMON_PATH)/rootdir/ueventd.smdk4x12.rc:recovery/root/ueventd.smdk4x12.rc
+    $(COMMON_PATH)/rootdir/ueventd.smdk4x12.rc:recovery/root/ueventd.smdk4x12.rc \
+    $(COMMON_PATH)/rootdir/twrp.fstab:recovery/root/etc/twrp.fstab
 
 # Audio
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/audio_effects.conf:system/etc/audio_effects.conf \
-    $(COMMON_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf \
-    $(COMMON_PATH)/audio/silence.wav:system/etc/sound/silence.wav
+    $(COMMON_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
 
 # Camera FW
 PRODUCT_COPY_FILES += \
@@ -62,7 +62,6 @@ PRODUCT_COPY_FILES += \
 
 # Packages
 PRODUCT_PACKAGES := \
-    AdvancedDisplay \
     audio.a2dp.default \
     audio.primary.smdk4x12 \
     audio.usb.default \
@@ -76,7 +75,9 @@ PRODUCT_PACKAGES := \
     lights.exynos4 \
     macloader \
     tinymix \
-    Torch    
+    OmniTorch \
+    SamsungServiceMode \
+    DeviceSettings
 
 # MFC API
 PRODUCT_PACKAGES += \
@@ -148,16 +149,16 @@ PRODUCT_COPY_FILES += \
 
 # Graphics
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.zygote.disable_gl_preload=1 \
     ro.opengles.version=131072 \
-    ro.bq.gpu_to_cpu_unsupported=1 \
-    debug.hwui.render_dirty_regions=false
+    debug.hwui.render_dirty_regions=false \
+    ro.bq.gpu_to_cpu_unsupported=1
 
 PRODUCT_TAGS += dalvik.gc.type-precise
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
+    persist.sys.usb.config=mtp \
+    ro.zygote.disable_gl_preload=true
 
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 
