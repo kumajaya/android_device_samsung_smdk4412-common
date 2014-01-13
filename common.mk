@@ -78,7 +78,7 @@ PRODUCT_PACKAGES := \
     SamsungServiceMode \
     DeviceSettings
 
-ifneq ($(TARGET_HAS_CAM_FLASH) ,false)
+ifneq ($(TARGET_HAS_CAM_FLASH),false)
 PRODUCT_PACKAGES += \
     OmniTorch
 endif
