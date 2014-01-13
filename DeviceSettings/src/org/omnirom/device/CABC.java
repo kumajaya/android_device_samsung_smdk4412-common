@@ -27,7 +27,7 @@ import android.os.SystemProperties;
 
 public class CABC extends CheckBoxPreference implements OnPreferenceChangeListener {
 
-    private static String FILE = SystemProperties.get("ro.cm.hardware.cabc", "/sys/class/lcd/panel/power_reduce");
+    private static String FILE = SystemProperties.get("ro.omni.hardware.cabc", "/sys/class/lcd/panel/power_reduce");
 
     public CABC(Context context, AttributeSet attrs) {
         super(context, attrs);

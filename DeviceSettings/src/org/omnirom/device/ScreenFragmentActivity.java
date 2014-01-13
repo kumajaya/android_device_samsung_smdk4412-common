@@ -32,6 +32,7 @@ import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
 import android.util.Log;
+import android.os.SystemProperties;
 
 import org.omnirom.device.R;
 
@@ -71,7 +72,7 @@ public class ScreenFragmentActivity extends PreferenceFragment implements
 
         /* CABC */
         mCABC = (CABC) findPreference(DeviceSettings.KEY_CABC);
-        mCABC.setEnabled(CABC.isSupported(res.getString(R.string.mdnie_cabc_sysfs_file)));
+        mCABC.setEnabled(CABC.isSupported(SystemProperties.get("ro.omni.hardware.cabc", "/sys/class/lcd/panel/power_reduce")));
 
         /* mDNIe */
         mmDNIeScenario = (mDNIeScenario) findPreference(DeviceSettings.KEY_MDNIE_SCENARIO);
